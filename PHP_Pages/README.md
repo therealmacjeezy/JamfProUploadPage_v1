@@ -1,20 +1,19 @@
-Contents
+## Contents
 
-- createscript.php
+* **createscript.php**
+  * Handles the uploading of new scripts to the JSS.
+  
+* **getscripts.php**
+  * Creates an xml file (ScriptList.xml) via an API Call that is used to populate the dropdown menu with script names
+  
+* **getsites.php**
+  * Creates an xml file (SiteList.xml) via an API Call that is used to populate the dropdown menu with site names
+  
+* **pkgupload.php**
+  * Handles the uploading of packages to the JSS.
 
-  Handles the uploading of new scripts to the JSS.
-- getscripts.php
+* **scriptdownload.php**
+  * Handles the downloading of scripts from the JSS.
 
-  Pulls a list of scripts currently uploaded in the JSS. Saves the output to an xml file that is stored locally on the server.
-- getsites.php
-
-  Pulls a list of sites being used in the JSS. Saves the output to an xml file that is stored locally on the server.
-- pkgupload.php
-
-  Handles the uploading of packages to the JSS.
-- scriptdownload.php
-
-  Handles the downloading of scripts from the JSS.
-- scriptupload.php
-
-  Handles the uploading of scripts to the JSS.
+* **scriptupload.php**
+  * Handles the uploading of scripts to the JSS.
