@@ -23,9 +23,9 @@ function REinit() {
           $(this).find('name').each(function(){
             var value = $(this).text();
             // If statement to filter all scripts based off what it starts with. This will filter the scripts that are avaiable for download by the prefix of the script name. Comment out the if statement if filtering is not needed
-            if( value.startsWith('keyword') ) {
+            //if( value.startsWith('keyword') ) {
               select.append("<option class='ddindent' value='"+ value +"'>"+value+"</option>");
-            };
+            //};
           });
         });
       });
