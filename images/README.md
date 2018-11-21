@@ -1,5 +1,4 @@
-Contents
+## File Contents
 
-tuxlogo.png
-
-    Image that is used in the index.html
+* **tuxlogo.png**
+    * Image that is displayed in the header of the index.html
