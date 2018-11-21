@@ -19,7 +19,7 @@ This page was created to allow jamf admins the access they need to upload packag
 
 Besides being able to upload new scripts and packages, your admins will also have the ability to download any script that is being used in your JSS *(With the option to add a filter if needed)*, make any edits to that script, then reupload it to the JSS. This allows for any changes to be made on the most up to date version.
 
-**Example Site Coming Soon** *(I am working on uploading this to my test server and creating the sample files)*
+**[Jamf Pro Upload Page Example](http://macjeezy.com/JamfProUploads/)**
 
 
 ## Features
