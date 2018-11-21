@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel ="stylesheet" type="text/css" href="uploadstylesheet.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script src="getsites.php"></script>
+<title>Jamf Pro File Upload - Packages</title>
+
+<script>
+function REinit() {
+  $.ajax({
+    type: "GET",
+    url: "SiteList.xml",
+    accept: "application/xml",
+    dataType: "xml",
+    success: function(xml) {
+      var select = $('#mySelect');
+
+      $(xml).find('sites').each(function(){
+        $(xml).find('site').each(function(){
+          $(this).find('name').each(function(){
+            var value = $(this).text();
+            select.append("<option class='ddindent' value='"+ value +"'>"+value+"</option>");
+          });
+        });
+      });
+      select.children(":first").text("").attr("selected",true);
+    } //sucess close
+  });
+};
+REinit();
+</script>
+</head>
+<body>
+<h3>Upload Package</h3>
+<p>This page was created to make uploading packages to Jamf Pro easier and more reliable.<br> Please select your site from the drop down menu below then select the package you want to upload.</p>
+
+<h4 style="color:Tomato;">**All fields are required**</h4>
+<hr>
+<b>Package Requirements:</b><br>
+<b>File Size Limit:</b> 6GB <b>|</b> <b>Accepted File Types:</b> .pkg, .mpkg, .dmg <br><br>
+<form action="pkgupload.php" method="post" enctype="multipart/form-data">
+<b>Select jamf Site:</b>
+<select id="mySelect" name="jamf_site">
+<option>loading</option>
+</select><br>
+<br><b>Select Package:</b>
+<input type="file" name="jamf_package" id="packageToUpload">
+  <input type="submit" name="submit" value="Upload Package">
+</form>
+<br><i>Note: No progress bar will appear during the upload. Please do not refresh or navigate away from this page until the upload is completed. When the upload is completed, you will see an alert appear and get redirected back to the File Upload page.</i>
+</body>
+
+</html>

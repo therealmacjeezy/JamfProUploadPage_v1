@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel ="stylesheet" type="text/css" href="uploadstylesheet.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script src="getsites.php"></script>
+<title>Jamf Pro File Upload - Script</title>
+
+<script>
+function REinit() {
+  $.ajax({
+    type: "GET",
+    url: "SiteList.xml",
+    accept: "application/xml",
+    dataType: "xml",
+    success: function(xml) {
+      var select = $('#mySelect');
+
+      $(xml).find('sites').each(function(){
+        $(xml).find('site').each(function(){
+          $(this).find('name').each(function(){
+            var value = $(this).text();
+            select.append("<option class='ddindent' value='"+ value +"'>"+value+"</option>");
+          });
+        });
+      });
+      select.children(":first").text("").attr("selected",true);
+    } //sucess close
+  });
+};
+REinit();
+</script>
+</head>
+<body>
+<h3>Create Script</h3>
+
+<p>This page allows you to upload a new script to the JSS. <br>To upload a script, select your site from the <b>"Select jamf Site"</b> dropdown menu, then attach your script via the "Choose File" option where it says <b>"Script to Upload"</b></p>
+<h4 style="color:Tomato;">** All fields are required **<br>
+** NOTE: If the script already exists in the JSS, use the "Edit Existing Script" option from the "Scripts" link above. **</h4>
+<hr><br>
+<form action="createscript.php" method="post" enctype="multipart/form-data">
+<b>Select jamf Site:</b>
+<select id="mySelect" name="jamf_site">
+<option>loading</option>
+</select><br>
+<br><b>Script to Upload:</b>
+<input type="file" name="jamf_script" id="scriptToUpload">
+  <input type="submit" name="submit" value="Upload Script">
+</form>
+<br><i>Note: No progress bar will appear during the upload. Please do not refresh or navigate away from this page until the upload is completed.</i>
+</body>
+</html>
+

@@ -1,0 +1,143 @@
+/* Joshua Harvey <josh@macjeezy.com> */
+/* November 2018 */
+/* GitHub: github.com/therealmacjeezy */
+/* JamfNation: therealmacjeezy */
+
+.header {
+    background-color: #A9A9A9;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+}
+
+.header h3 {
+    text-shadow: 2px 2px 4px #D3D3D3;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer {
+    background-color: #A9A9A9;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 20px;  
+}
+
+.footer a {
+    color: rgb(19, 114, 158);
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+/* Navbar Container */
+.topnav {
+    /*overflow: hidden;*/
+	text-align: center;
+    background-color:#000000;
+}
+
+/* Navbar Links */
+.topnav a {
+    float: center;
+    text-align: center;
+    padding: 14px 14px;
+    color: #D3D3D3;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.topnav a:hover {
+    background-color: #2959a1;
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #000000;
+    color: #D3D3D3;
+    padding: 14px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2959a1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.452);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    border-color: white;
+    border-style: solid;
+    border-width: thin;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #87CEEB;
+    color: black;
+    text-transform: uppercase;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: monospace;
+    word-spacing: -2px;
+    font-weight: bold;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #2959a1;
+}
+
+.button {
+    background-color: #e7e7e7; 
+    color: black;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 4px;
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/* Content Container Columns */
+.column {
+    float: center;
+    width: 100%;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

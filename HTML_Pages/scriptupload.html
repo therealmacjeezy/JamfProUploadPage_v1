@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script src="getscripts.php"></script>
+<title>Jamf Pro File Upload - Script</title>
+
+<script>
+//$(document).ready(function(){
+function REinit() {
+  $.ajax({
+    type: "GET",
+    url: "ScriptList.xml",
+    accept: "application/xml",
+    dataType: "xml",
+    success: function(xml) {
+      var select = $('#mySelect');
+
+      $(xml).find('scripts').each(function(){
+        $(xml).find('script').each(function(){
+          $(this).find('name').each(function(){
+            var value = $(this).text();
+            // If statement to filter all scripts based off what it starts with. This will filter the scripts that are avaiable for download by the prefix of the script name. Comment out the if statement if filtering is not needed
+            if( value.startsWith('keyword') ) {
+              select.append("<option class='ddindent' value='"+ value +"'>"+value+"</option>");
+            };
+          });
+        });
+      });
+      select.children(":first").text("").attr("selected",true);
+    } //sucess close
+  });
+};
+REinit();
+</script>
+
+</head>
+<body>
+<h3>Edit Script</h3>
+<p>This page allows you to download, edit and reupload existing scripts. To start, select a script from the <b>"Select Script to Edit / Replace"</b>dropdown menu.
+<br>Once you have selected the script, you will have the option of downloading the current uploaded version.
+<br>
+When you are ready to upload the script, select the script you are replacing from the <b>"Select Script to Edit / Replace"</b> dropdown menu (if not already selected) and select the updated file from the <b>"Select Script to Upload"</b> section. When ready, select the <b>"Upload Script"</b> button. </p>
+<h4 style="color:Tomato;">NOTE: The uploaded script will immediately replace the version in use in the JSS. Be sure to verify both script names match before uploading. </h4>
+
+<hr>
+<form action="scriptupload.php" method="post" enctype="multipart/form-data">
+<b>Select Script to Edit / Replace:</b>
+<select id="mySelect" name="jamf_script_name">
+<option>loading</option>
+</select>
+<input type="submit" formaction="scriptdownload.php" name="download" value="Download Script">
+<br>
+<br>
+<br>
+<strong>Select Script to Upload:</strong>
+<input type="file" name="jamf_script" id="scriptToUpload">
+  <input type="submit" name="submit" value="Upload Script">
+</form>
+<br><i>Note: No progress bar will appear during the upload. Please do not refresh or navigate away from this page until the upload is completed.</i>
+</body>
+
+</html>
