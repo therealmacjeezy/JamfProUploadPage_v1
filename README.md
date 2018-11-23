@@ -77,9 +77,15 @@ Your edited script will appear in the JSS under the Uploads category and use the
 
 ### Setup
 
+* **IIS Only**
+    * For packages larger then 30MB, you will need to change the Request Limits inside of IIS to a value higher then the largest package you think will be used. The default setting is 30MB and the value is read as Bytes *(eg: 3000000000 Bytes = 3 Gigabytes)* [Request Limits Documentation](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/security/requestfiltering/requestlimits/)
+
 * **Requirements**
     * Webserver with PHP installed
+    	* [Install PHP on IIS](https://docs.microsoft.com/en-us/iis/application-frameworks/scenario-build-a-php-website-on-iis/configuring-step-1-install-iis-and-php)
+	* [Install PHP on CentOS](https://www.tecmint.com/install-php-7-in-centos-7/)
     * API Access to your Jamf Pro Instance
+    
     
 **Setup Steps**
 1. Copy the files to your webserver into the same directory. If you choose to use different directories *(eg: /PHP/getscripts.php, /images/tuxlogo.png, etc..)* be sure to update the source paths for each of the files that have been moved.
@@ -145,7 +151,11 @@ Your edited script will appear in the JSS under the Uploads category and use the
     * **scriptupload.html**
        * Lines 25 - 28
        *Uncomment these lines and change the 'keyword' to match a naming prefix you use with scripts to filter and "restrict" them from being editing/replaced.*
-4. Once the above files have been copied over and modified to fit your environment, your upload page should be up and running. Just use the FQDN of your webserver and add the directory you saved the files in (eg: https://yourwebserver.com/JamfUploads/) 
+4. Modify the php.ini file to allow file uploads by changing the following values to fit your environment
+    * **post_max_size** [PHP Manual](http://php.net/post-max-size)
+    * **upload_max_filesize** [PHP Manual](http://php.net/upload-max-filesize)
+    * **memory_limit** [PHP Manual](http://php.net/memory-limit)
+5. Once the above files have been copied over and modified to fit your environment, your upload page should be up and running. Just use the FQDN of your webserver and add the directory you saved the files in (eg: https://yourwebserver.com/JamfUploads/) 
 
 ### Troubleshooting
 * **Dropdown menus stuck at "loading"**
