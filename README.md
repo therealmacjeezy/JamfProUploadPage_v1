@@ -83,7 +83,7 @@ Your edited script will appear in the JSS under the Uploads category and use the
 * **Requirements**
     * Webserver with PHP installed
     	* [Install PHP on IIS](https://docs.microsoft.com/en-us/iis/application-frameworks/scenario-build-a-php-website-on-iis/configuring-step-1-install-iis-and-php)
-	* [Install PHP on CentOS](https://www.tecmint.com/install-php-7-in-centos-7/)
+		* [Install PHP on CentOS](https://www.tecmint.com/install-php-7-in-centos-7/)
     * API Access to your Jamf Pro Instance
     
     
@@ -161,3 +161,5 @@ Your edited script will appear in the JSS under the Uploads category and use the
 * **Dropdown menus stuck at "loading"**
 	* This is the default text used for the dropdown menus. If you see this, verify the SiteList.xml or ScriptList.xml exist in the same directory as the page is in. If missing, verify the settings in the php page creating the xml file are correct.
 
+* **404 Error Page with larger uploads**
+	* This error usually occurs when the Request Limit header is set to a smaller value then the package you are trying to upload. To verify this is the cause of the issue, look in your webserver logs and find the substatus of the error. If it is 404.13, changing the Request Limit header will resolve this issue.
