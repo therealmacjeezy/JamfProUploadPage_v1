@@ -6,9 +6,17 @@
 <link rel ="stylesheet" type="text/css" href="uploadstylesheet.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 <script src="getsites.php"></script>
+<script src="getcategories.php"></script>  
 <title>Jamf Pro File Upload - Packages</title>
 
 <script>
+function uploadView() {
+    var x = document.getElementById("upload");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    }
+}  
+  
 function REinit() {
   $.ajax({
     type: "GET",
@@ -31,6 +39,29 @@ function REinit() {
   });
 };
 REinit();
+  
+function REinit2() {
+    $.ajax({
+      type: "GET",
+      url: "CategoriesList.xml",
+      accept: "application/xml",
+      dataType: "xml",
+      success: function(xml) {
+        var select = $('#mySelect2');
+  
+        $(xml).find('categories').each(function(){
+          $(xml).find('category').each(function(){
+            $(this).find('name').each(function(){
+              var value = $(this).text();
+              select.append("<option class='ddindent' value='"+ value +"'>"+value+"</option>");
+            });
+          });
+        });
+        select.children(":first").text("").attr("selected",true);
+      } //sucess close
+    });
+  };
+REinit2();  
 </script>
 </head>
 <body>
@@ -40,17 +71,72 @@ REinit();
 <h4 style="color:Tomato;">**All fields are required**</h4>
 <hr>
 <b>Package Requirements:</b><br>
-<b>File Size Limit:</b> 6GB <b>|</b> <b>Accepted File Types:</b> .pkg, .mpkg, .dmg <br><br>
+<b>File Size Limit:</b> 6GB <b>|</b> <b>Accepted File Types:</b> .pkg, .mpkg, .dmg <b>|</b> <b>Package Upload Limit:</b> 5<br><br>
 <form action="pkgupload.php" method="post" enctype="multipart/form-data">
 <b>Select jamf Site:</b>
-<select id="mySelect" name="jamf_site">
+<select id="mySelect" name="jamf_site" onchange="uploadView()">
 <option>loading</option>
 </select><br>
+  
+<b>Select Category <small>(Optional - Defaults to Uploads)</small>:</b>
+<select id="mySelect2" name="jamf_category">
+<option>loading</option>
+</select>
+  
+<div id="upload" style="display: none">  
 <br><b>Select Package:</b>
-<input type="file" name="jamf_package" id="packageToUpload">
+<input type="file" name="jamf_package[]" id="packageToUpload" multiple="5" onchange="packageList()">
   <input type="submit" name="submit" value="Upload Package">
 </form>
+  
+<p id="fileList"></p>
+
+<script>
+  function formatBytes(bytes,decimals) {
+    if(bytes == 0) return '0 Bytes';
+    var k = 1024,
+        dm = decimals <= 0 ? 0 : decimals || 2,
+        sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+        i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
+
+  function packageList(){
+      var x = document.getElementById("packageToUpload");
+      var txt = "";
+      if ('files' in x) {
+          if (x.files.length == 0) {
+              txt = "Select one or more files.";
+          } else {
+              for (var i = 0; i < x.files.length; i++) {
+                  txt += "<br><strong>" + (i+1) + ". </strong>";
+                  var file = x.files[i];
+                  if ('name' in file) {
+                      txt += file.name + "<br>";
+                  }
+                  if ('size' in file) {
+                      txt += "Size: " + formatBytes(file.size,2) + "<br>";
+                  }
+              }
+          }
+      } 
+      else {
+          if (x.value == "") {
+              txt += "Select one or more files.";
+          } else {
+              txt += "The files property is not supported by your browser!";
+              txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+          }
+      }
+      document.getElementById("fileList").innerHTML = txt;
+  }
+</script> 
+  
 <br><i>Note: No progress bar will appear during the upload. Please do not refresh or navigate away from this page until the upload is completed. When the upload is completed, you will see an alert appear and get redirected back to the File Upload page.</i>
+<p>To upload multiple packages, either select them from the "Choose Files" button or drag and drop them into the field.</p>
+</div>
+  
+  
 </body>
 
 </html>
