@@ -34,7 +34,7 @@ Besides being able to upload new scripts, packages and profiles, your admins wil
     - This section is a workaround for a open PI with jamf and allows for your admins to upload *unsigned* configuration profiles to their site.
 
 
-![Jamf Pro Upload Form Home Page](/images/example.png)
+![Jamf Pro Upload Form Home Page](/images/example2.png)
     
 **Example of the main page**
 
