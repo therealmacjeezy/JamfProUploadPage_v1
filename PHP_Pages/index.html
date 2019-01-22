@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel ="stylesheet" type="text/css" href="uploadstylesheet.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<title>Jamf Pro File Upload</title>
+<script>
+	$(document).ready(function() {
+		$('a').click(function(event){
+			event.preventDefault();
+			$('.column').load($(this).attr('href'));
+			return false;
+		});
+	});
+</script>
+</head>
+
+<body>
+<div class="header">
+	<img src="tuxlogo.png" width="20%" height="20%"><br>
+	<h3><b>Jamf Pro File Upload Page</b></h3>
+</div>
+
+<div class="topnav">
+	<a href="pkgupload.html">Package</a>
+	<a href="profileupload.html">Profiles</a>
+	<div class="dropdown">
+	<button class="dropbtn">Scripts</button>
+		<div class="dropdown-content">
+			<a href="newscript.html">Create New Script</a>
+			<a href="scriptupload.html">Edit Existing Script</a>
+		</div>
+	</div>
+	<a href="home.html">Home</a>
+</div>
+
+<div class="column">
+		<br>
+		<b>Select an option from the list above to get started.</b>
+		<br><br>
+</div>
+
+<div class="footer">
+  <b>Created by:</b> Joshua Harvey<br>
+  <b>Contact information:</b> <a href="mailto:josh@macjeezy.com">josh@macjeezy.com</a><br>
+  <b>Last Updated:</b> Oct 2018<br>
+</div>
+</body>
+</html>
