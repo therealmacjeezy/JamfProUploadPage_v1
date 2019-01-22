@@ -8,6 +8,9 @@
   
 * **pkgupload.html**
     * Page for uploading a package to the JSS.
+    
+* **profileupload.html**
+    * Page for uploading a profile to the JSS.
   
 * **scriptupload.html**
     * Page for downloading and uploading an existing script to the JSS.
