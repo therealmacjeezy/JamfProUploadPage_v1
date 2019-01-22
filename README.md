@@ -9,6 +9,7 @@ Table of Contents
 - [Overview](#overview)
 - [Features](#features)
 	- [Packages](#packages)
+	- [Profiles](#profiles)
 	- [Scripts](#scripts)
 - [Install/Setup](#setup)
 - [Troubleshooting](#troubleshooting)
@@ -17,7 +18,7 @@ Table of Contents
 
 This page was created to allow jamf admins the access they need to upload packages and scripts to the JSS, without having to give them full access to Jamf Admin.  
 
-Besides being able to upload new scripts and packages, your admins will also have the ability to download any script that is being used in your JSS *(With the option to add a filter if needed)*, make any edits to that script, then reupload it to the JSS. This allows for any changes to be made on the most up to date version.
+Besides being able to upload new scripts, packages and profiles, your admins will also have the ability to download any script that is being used in your JSS *(With the option to add a filter if needed)*, make any edits to that script, then reupload it to the JSS. This allows for any changes to be made on the most up to date version.
 
 **[Jamf Pro Upload Page Example](http://macjeezy.com/JamfProUploads/)**
 
@@ -28,7 +29,8 @@ Besides being able to upload new scripts and packages, your admins will also hav
     - Updated each time the page is reloaded. Uses an API call to create an xml file with all the sites *(getsites.php)*. Then the html page uses jquery to parse the xml *(SiteList.xml)* and loads them as options in the dropdown menu.
 * **Up to date Script List** *(Script Selection Dropdown - Edit Existing Script Option)*
     - Updated each time the page is reloaded. Uses an API call to create an xml file with all of the scripts in the JSS *(getscripts.php)*. Then the html page uses jquery to parse the xml *(ScriptList.xml)* and loads them as options in the dropdown menu. You also have the ability to filter the list of scripts based off its naming prefix. This can keep your "Full Jamf Pro" scripts from being downloaded and edited, and only allow sites to edit their own scripts.
-    
+* **Configuration Profile Uploads** *(Unsigned Profiles Only currently)
+    - This section is a workaround for a open PI with jamf and allows for your admins to upload *unsigned* configuration profiles to their site.
 
 
 ![Jamf Pro Upload Form Home Page](/images/example.png)
@@ -51,7 +53,19 @@ Your new package will appear in the JSS under the Uploads category and use the f
         
         sitename - packagename.pkg
 
+### Profiles
+**Options** | **Info**
+------------ | -------------
+**File Size Limit** | N/A
+**Allowed File Types** | .mobileconfig
 
+**Uploading a Profile**
+
+Select the site you manage via the dropdown menu. Once a site is selected, add the profile you want to upload then select the "Upload" button. Once the profile has been uploaded successfully, an API call will be made to update the JSS and you will be provided with two links. One to open the profile in a new tab and the other to go back to the Upload Form Home. 
+
+Your new profile will appear in the JSS under the Uploads category and use the following naming convention
+        
+        sitename - name.of.profile
 
 ### Scripts
 **Options** | **Info**
@@ -94,6 +108,7 @@ Your edited script will appear in the JSS under the Uploads category and use the
         * getscript.php
         * getsites.php
         * pkgupload.php
+	* profileupload.php
         * scriptdownload.php
         * scriptupload.php
      * **HTML Pages** */JamfProUploadPage/HTML_Pages/*
@@ -101,6 +116,7 @@ Your edited script will appear in the JSS under the Uploads category and use the
         * home.html
         * newscript.html
         * pkgupload.html
+	* profileupload.html
         * scriptupload.html
      * **Images** */JamfProUploadPage/images/*
         * tuxlogo.png *(You can use any icon, just be sure to change the reference in the index.html)*
@@ -109,6 +125,7 @@ Your edited script will appear in the JSS under the Uploads category and use the
 2. Create the following directories on your webserver *(Note: Be sure to change the Packages path in pkguploads.php to the path of the DP you use with Jamf Pro)*
     * Packages *(Used for testing the upload process)*
     * Scripts
+    * Profiles
 3. Modify the following files and information to match your Jamf Pro setup *(Note: You may also want to change the text of the error messages and contact email that gets displayed also. The fields mentioned below are only the required changes needed to make the scripts function)*
     * **createscript.php**
     
@@ -117,6 +134,15 @@ Your edited script will appear in the JSS under the Uploads category and use the
       `curl_setopt($curl, CURLOPT_USERPWD, "apiuser:apipass");`
       
       `$get_data = callAPI('POST', 'https://jamfurl/JSSResource/scripts/id/0', $updateXML);`
+    * **profileupload.php**
+    
+      `$uploadDirectory = "/Profile/";`
+      
+      `curl_setopt($curl, CURLOPT_USERPWD, "apiuser:apipass");`
+      
+      `$get_data = callAPI('POST', 'https://jamfurl/JSSResource/osxconfigurationprofiles/id/0', $updateXML);`
+      
+      `echo "<a href='https://your.jamf.pro/OSXConfigurationProfiles.html?o=r&id=" . $matches[1] . "' target='_blank'>Click Here To Edit The Profile in a new tab</a>";`
     * **getscript.php**
     
       `curl_setopt($curl, CURLOPT_USERPWD, "apiuser:apipass");`
@@ -163,3 +189,6 @@ Your edited script will appear in the JSS under the Uploads category and use the
 
 * **404 Error Page with larger uploads**
 	* This error usually occurs when the Request Limit header is set to a smaller value then the package you are trying to upload. To verify this is the cause of the issue, look in your webserver logs and find the substatus of the error. If it is 404.13, changing the Request Limit header will resolve this issue.
+	
+* **Configuration Profile gets created without a payload**
+	* This will occur if the Configuration Profile was uploaded as a SIGNED profile. Verify the Configuration Profile is UNSIGNED and try the upload again. This will also occur if you are uploading a PPPC profile to a jamf instance older then 10.9.
