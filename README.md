@@ -30,7 +30,7 @@ Besides being able to upload new scripts, packages and profiles, your admins wil
     - Updated each time the page is reloaded. Uses an API call to create an xml file with all the sites *(getsites.php)*. Then the html page uses jquery to parse the xml *(SiteList.xml)* and loads them as options in the dropdown menu.
 * **Up to date Script List** *(Script Selection Dropdown - Edit Existing Script Option)*
     - Updated each time the page is reloaded. Uses an API call to create an xml file with all of the scripts in the JSS *(getscripts.php)*. Then the html page uses jquery to parse the xml *(ScriptList.xml)* and loads them as options in the dropdown menu. You also have the ability to filter the list of scripts based off its naming prefix. This can keep your "Full Jamf Pro" scripts from being downloaded and edited, and only allow sites to edit their own scripts.
-* **Configuration Profile Uploads** *(Unsigned Profiles Only currently)
+* **Configuration Profile Uploads** *(Unsigned Profiles Only currently)*
     - This section is a workaround for a open PI with jamf and allows for your admins to upload *unsigned* configuration profiles to their site.
 
 
