@@ -12,6 +12,9 @@
 * **pkgupload.php**
   * Handles the uploading of packages to the JSS.
 
+* **profileupload.php**
+  * Handles the uploading of profiles to the JSS.
+
 * **scriptdownload.php**
   * Handles the downloading of scripts from the JSS.
 
