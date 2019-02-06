@@ -5,6 +5,9 @@ Updated: Jan 2019
 
 josh@macjeezy.com
 
+## **[Jamf Pro Upload Page Example](http://macjeezy.com/JamfProUploads/)**
+
+
 Table of Contents
 =================
 - [Overview](#overview)
@@ -20,8 +23,6 @@ Table of Contents
 This page was created to allow jamf admins the access they need to upload packages and scripts to the JSS, without having to give them full access to Jamf Admin.  
 
 Besides being able to upload new scripts, packages and profiles, your admins will also have the ability to download any script that is being used in your JSS *(With the option to add a filter if needed)*, make any edits to that script, then reupload it to the JSS. This allows for any changes to be made on the most up to date version.
-
-**[Jamf Pro Upload Page Example](http://macjeezy.com/JamfProUploads/)**
 
 
 ## Features
