@@ -8,6 +8,9 @@
   
 * **getsites.php**
   * Creates an xml file (SiteList.xml) via an API Call that is used to populate the dropdown menu with site names
+
+* **getcategories.php**
+  * Creates an xml file (CategoriesList.xml) via an API Call that is used to populate the dropdown menu with categories
   
 * **pkgupload.php**
   * Handles the uploading of packages to the JSS.
