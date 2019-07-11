@@ -109,8 +109,9 @@ Your edited script will appear in the JSS under the Uploads category and use the
         * createscript.php
         * getscript.php
         * getsites.php
+        * getcategories.php
         * pkgupload.php
-	* profileupload.php
+	     * profileupload.php
         * scriptdownload.php
         * scriptupload.php
      * **HTML Pages** */JamfProUploadPage/HTML_Pages/*
@@ -118,7 +119,7 @@ Your edited script will appear in the JSS under the Uploads category and use the
         * home.html
         * newscript.html
         * pkgupload.html
-	* profileupload.html
+	     * profileupload.html
         * scriptupload.html
      * **Images** */JamfProUploadPage/images/*
         * tuxlogo.png *(You can use any icon, just be sure to change the reference in the index.html)*
