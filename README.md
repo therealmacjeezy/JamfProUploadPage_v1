@@ -1,4 +1,17 @@
-# Jamf Pro Upload Page
+# Note:
+**11/15/19** 
+
+Version 2 is currently being sanitized. Once I am finished, I'll be uploading it and creating version 1 and version 2 directories. Version 2 is the one that was mentioned at JNUC 2019 during the **Cats in Space** presentation. Version 2 will contain the following changes:
+- Upgraded UI
+- Built in Script Editor
+- Option for Site Level Selection via drop down menu
+- New Package Options (Delete / Download)
+- New Script Options (Edit / Create / Download)
+- Upload Chunking
+  - Removes the Package Upload Size Limit
+ 
+ 
+# Jamf Pro Upload Page Version 1
 
 Josh Harvey | Nov 2018
 Updated: Jan 2019
